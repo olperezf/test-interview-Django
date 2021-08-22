@@ -1,0 +1,22 @@
+.rectangle{
+    margin: 20px; 
+    width:100px;
+    height:50px;
+    border: 1px solid black;
+    text-align: center;
+    display:inline-block;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.available{
+    background: green;
+
+}
+.not_available{ 
+    background: red;
+}
+
+#clear{
+    cursor: pointer;
+    text-decoration: underline;
+}
