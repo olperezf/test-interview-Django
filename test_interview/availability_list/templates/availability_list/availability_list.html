@@ -5,6 +5,7 @@
 {% block link %}
     <link rel="stylesheet" type="text/css" href="{% static 'availability_list/css/index.scss' %}">
 {% endblock %}
+
 {% block script %}
     <script src="{% static 'availability_list/js/index.js' %}" type="text/javascript"></script>
 {% endblock %}
@@ -12,13 +13,14 @@
 {% block title %}Availability List{% endblock %}
 
 {% block content %}
+   
    <center>
-     <div>Availability (select Max 8):
+     Availability (select Max 8):
          <div id="availability">
            8
          </div>
-     </div>
    </center>
+   
    {% for item in 14|get_range %}
        <div id="{{forloop.counter}}" class="rectangle" >
            <b>
@@ -31,9 +33,17 @@
        </div>
    {% endfor %}
    
-     <span id="clear">clear all availability hours</span>
+   <span id="clear">clear all availability hours</span>
+   
+   <center> 
+     <b> Horario Seleccionado:</b>
+   <div id="selected_schedule" style="text-align: center;"></div>  
+   </center>
+
+   <br><br>
    <div style="text-align: center;">
      <a href="{% url 'index'  %}">Volver al Index</a>
    </div> 
+
 {% endblock %} 
 
