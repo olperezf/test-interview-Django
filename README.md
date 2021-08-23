@@ -43,7 +43,7 @@ Solución:
                    {% else %}
                        {{ item|addition:7 }}:00
                    {% endif %}
-         </b>
+               </b>
            </div>
        {% endfor %}
 
