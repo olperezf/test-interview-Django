@@ -7,7 +7,7 @@ Construye una lista que contenga tramos horarios, en intervalos de 30 minutos, q
 Solución:
 
 
-<a href="#"><img src="/img/availability_list.jpg"/></a>
+<a href="#" style="pointer-events: none;"><img src="/img/availability_list.jpg"/></a>
 
 ### Views:
 
