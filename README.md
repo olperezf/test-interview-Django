@@ -6,6 +6,8 @@ Construye una lista que contenga tramos horarios, en intervalos de 30 minutos, q
 
 Solución:
 
+<img src="/img/availability_list.jpg" />
+
 ### Views:
 
     from django.template.defaulttags import register
