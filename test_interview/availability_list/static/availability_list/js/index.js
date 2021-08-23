@@ -2,14 +2,21 @@
 document.addEventListener("DOMContentLoaded", function(){
   
   let availability = 8;
-  let schedule = []
+  let schedule = [];
   let selected_schedule = document.getElementById("selected_schedule");
   let ability = document.getElementById("availability");
   let divs = document.getElementsByTagName("div");
   let rectangles = document.getElementsByClassName("rectangle");
   let clear = document.getElementById("clear");
   
-  const removeClassAvailable = function(div) {
+
+  const orderScheduleAddInHtml = () => {
+      schedule.sort((a, b) => new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b));
+      selected_schedule.textContent = schedule.join(' <-> ');
+      ability.textContent = availability;
+  };
+  
+  const removeClassAvailable = (div) => {
       div.classList.remove("available");
       availability += 1;
      //ciclo que busca todos los no disponible y los remueve
@@ -18,48 +25,48 @@ document.addEventListener("DOMContentLoaded", function(){
             removeClassNotAvailable(div); 
           }
       }
-      schedule = schedule.filter(item => item !== div.innerText)
-      selected_schedule.textContent = schedule.join(' <--> ')
-      ability.textContent = availability;
-  }
+      schedule = schedule.filter(item => item !== div.innerText);
+      orderScheduleAddInHtml();
+  };
 
-  const removeClassNotAvailable = function(div){
+  const removeClassNotAvailable = (div) => {
     div.classList.remove("not_available");
     availability += 1;  
-  }
+  };
 
-  const addClass = function(div){
+  const addClass = (div) => {
     availability -= 1;
     if (availability >= 0){
           schedule.push(div.innerText)
-          selected_schedule.textContent = schedule.join(' <-> ')
-          ability.textContent = availability;
+          orderScheduleAddInHtml();
           div.classList.add("available");
       }
       else
           div.classList.add("not_available");
-  }
+  };
+
 
   const main = function(){
     for (let rectangle of rectangles) {
       rectangle.addEventListener('click', (function() {
 
       let div = document.getElementById(this.id);
-      if (div.classList.contains('available')){
-         removeClassAvailable(div);
-      }
-      else{
-          if (div.classList.contains('not_available')){
-            removeClassNotAvailable(div);
-          }
-          else{
-            addClass(div);
-          }  
-      }
+      let cls = div.classList;  
       
+      switch (true) {
+        case cls.contains('available'):
+          removeClassAvailable(div);
+          break;
+        case cls.contains('not_available'):
+          removeClassNotAvailable(div);
+          break;
+        default:
+          addClass(div);
+      }
+
      }))
    }
-  }
+  };
 
   clear.addEventListener('click', (function() {
     availability = 8;

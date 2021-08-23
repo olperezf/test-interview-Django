@@ -14,12 +14,12 @@
 
 {% block content %}
    
-   <center>
-     Availability (select Max 8):
-         <div id="availability">
-           8
-         </div>
-   </center>
+  <center>
+    
+    Availability (select Max 8):
+    <div id="availability">
+     8
+    </div>
    
    {% for item in 14|get_range %}
        <div id="{{forloop.counter}}" class="rectangle" >
@@ -35,15 +35,13 @@
    
    <span id="clear">clear all availability hours</span>
    
-   <center> 
-     <b> Horario Seleccionado:</b>
+   <div><b> Horario Seleccionado:</b></div>
    <div id="selected_schedule" style="text-align: center;"></div>  
-   </center>
 
    <br><br>
-   <div style="text-align: center;">
-     <a href="{% url 'index'  %}">Volver al Index</a>
-   </div> 
+   <a href="{% url 'index'  %}">Volver al Index</a>
+  
+  </center>
 
 {% endblock %} 
 
