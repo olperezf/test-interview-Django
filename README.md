@@ -6,6 +6,9 @@ Construye una lista que contenga tramos horarios, en intervalos de 30 minutos, q
 
 Solución:
 
+![alt text](https://github.com/olperezf/test-interview-Django/blob/master/img/availability_list.jpg?raw=true)
+
+
 ### Views:
 
     from django.template.defaulttags import register
@@ -19,10 +22,12 @@ Solución:
     @register.filter
     def get_range(value):
         return(sorted(list(range(value)) * 2))[:-1]
-
+        
+La función get_range retorna una lista ordenada de elementos que es llamada por la declaración {% for item in 14|get_range %} en la linea 40 del template. Dicha lista tiene la estructura [1,1,2,2,3,3,4,4,5,5...], hasta 28 elementos, pero se necesita 27 elementos es por ello que se utiliza [:-1] al final.
 
 ### Template:
-
+    
+    {% load mathfilters %}
     {% block content %}
 
       <center>
@@ -32,15 +37,15 @@ Solución:
          8
         </div>
 
-       {% for item in 14|get_range %}
+       {% for hour in 14|get_range %}
            <div id="{{forloop.counter}}" class="rectangle" >
                <b>
                    {% if forloop.counter|divisibleby:2 %}
-                       {{ item|addition:7 }}:30
+                       {{ hour|addition:7 }}:30
                    {% else %}
-                       {{ item|addition:7 }}:00
+                       {{ hour|addition:7 }}:00
                    {% endif %}
-         </b>
+               </b>
            </div>
        {% endfor %}
 
@@ -55,6 +60,9 @@ Solución:
       </center>
 
     {% endblock %} 
+    
+Para este template se necesita la instalación de django-mathfilters, permitiendo la utilización de addition dentro del for. Y forloop.counter es siempre asignada a un número entero representando el número de veces que se ha entrado en el bucle.
+ 
 
 ### Javascript:
 
@@ -103,7 +111,7 @@ Solución:
       };
 
 
-      const main = function(){
+      const main = () => {
         for (let rectangle of rectangles) {
           rectangle.addEventListener('click', (function() {
 
@@ -137,6 +145,8 @@ Solución:
       }));
 
       main();
+      
+Este algoritmo en javascript esta basado en añadir y remover clases para el cambio de colores en las cajitas de horas, y tiene un contador que va disminuyendo a medida que se va seleccionando la hora o aumentar cuando deselecciona. La función orderScheduleAddInHtml(), ordena los elementos del arreglo schedule de menor a mayor incluyendolo dentro del html.      
       
 ### Css:
 
