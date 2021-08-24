@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function(){
   };
 
 
-  const main = function(){
+  const main = () => {
     for (let rectangle of rectangles) {
       rectangle.addEventListener('click', (function() {
 

@@ -21,13 +21,13 @@
      8
     </div>
    
-   {% for item in 14|get_range %}
+   {% for hour in 14|get_range %}
        <div id="{{forloop.counter}}" class="rectangle" >
            <b>
                {% if forloop.counter|divisibleby:2 %}
-                   {{ item|addition:7 }}:30
+                   {{ hour|addition:7 }}:30
                {% else %}
-                   {{ item|addition:7 }}:00
+                   {{ hour|addition:7 }}:00
                {% endif %}
 	   </b>
        </div>
