@@ -75,13 +75,13 @@ Para este template se necesita la instalación de django-mathfilters, permitiend
       let clear = document.getElementById("clear");
 
 
-      orderScheduleAddInHtml = () => {
+      const orderScheduleAddInHtml = () => {
           schedule.sort((a, b) => new Date('1970/01/01 ' + a) - new Date('1970/01/01 ' + b));
           selected_schedule.textContent = schedule.join(' <-> ');
           ability.textContent = availability;
       };
 
-      removeClassAvailable = (div) => {
+      const removeClassAvailable = (div) => {
           div.classList.remove("available");
           availability += 1;
          //ciclo que busca todos los no disponible y los remueve
@@ -94,12 +94,12 @@ Para este template se necesita la instalación de django-mathfilters, permitiend
           orderScheduleAddInHtml();
       };
 
-      removeClassNotAvailable = (div) => {
+      const removeClassNotAvailable = (div) => {
         div.classList.remove("not_available");
         availability += 1;  
       };
 
-      addClass = (div) => {
+      const addClass = (div) => {
         availability -= 1;
         if (availability >= 0){
               schedule.push(div.innerText)
@@ -111,7 +111,7 @@ Para este template se necesita la instalación de django-mathfilters, permitiend
       };
 
 
-      main = () => {
+      const main = () => {
         for (let rectangle of rectangles) {
           rectangle.addEventListener('click', (function() {
 
