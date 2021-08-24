@@ -6,8 +6,8 @@ Construye una lista que contenga tramos horarios, en intervalos de 30 minutos, q
 
 Solución:
 
+![alt text](https://github.com/olperezf/test-interview-Django/blob/master/img/availability_list.jpg?raw=true)
 
-<a href="#"><img src="/img/availability_list.jpg"/></a>
 
 ### Views:
 
